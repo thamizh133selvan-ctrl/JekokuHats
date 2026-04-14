@@ -252,15 +252,9 @@
                 const phone = document.getElementById("phone").value;
                 const service = document.getElementById("service").value;
 
-                // 🏁 Deployment Check: Use localhost for local testing, or your real URL after deployment
-                const isLocal = window.location.hostname === "localhost" || 
-                               window.location.hostname === "127.0.0.1" || 
-                               window.location.hostname === "" || 
-                               window.location.protocol === "file:";
-
                 const API_URL = isLocal 
                     ? "http://localhost:3000"
-                    : "https://jekokuhats.com"; // 👈 REPLACE THIS with your actual URL tomorrow
+                    : ""; // Use relative path in production
 
                 await addDoc(collection(db, "registrations"), {
                     name, email, phone, service,
@@ -275,14 +269,16 @@
                     body: JSON.stringify({ name, email, phone, service })
                 });
 
+                const responseText = await response.text();
+
                 if (response.ok) {
                     alert("Registration successful! Welcome to JEKOKU HATS 🎉 Check your email for confirmation.");
                     document.getElementById("regForm").reset();
                 } else {
-                    const errorText = await response.text();
-                    console.error("Server error:", errorText);
-                    alert("Registration partially successful, but there was an issue sending emails. Our team will still reach out to you!");
+                    console.error("Server error:", responseText);
+                    alert("Issue: " + responseText + "\n\nOur team will still reach out to you!");
                 }
+
             } catch (error) {
                 console.error("Error during registration: ", error);
                 alert("Network error or server is offline. Please try again later or contact us directly.");
