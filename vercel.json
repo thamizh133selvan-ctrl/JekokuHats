@@ -5,12 +5,13 @@
   "rewrites": [
     {
       "source": "/register",
-      "destination": "/server.js"
+      "destination": "/api/register"
     },
     {
       "source": "/admin/(.*)",
-      "destination": "/server.js"
+      "destination": "/api/register"
     }
   ]
 }
+
 

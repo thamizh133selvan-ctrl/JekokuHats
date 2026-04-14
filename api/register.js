@@ -19,7 +19,10 @@ const transporter = nodemailer.createTransport({
 });
 
 // ✅ Route: Send emails after registration
-app.post("/register", async (req, res) => {
+// On Vercel, when this file is reached via a rewrite to /api/register, 
+// the internal path might just be /register or / depending on the config.
+// We'll handle both /register and / to be safe.
+app.post(["/register", "/"], async (req, res) => {
   const { name, email, phone, service, message } = req.body;
 
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
@@ -91,11 +94,11 @@ app.post("/register", async (req, res) => {
 });
 
 // ✅ Health check/Test route
-app.get("/test", async (req, res) => {
-  res.json({ status: "alive", timestamp: new Date() });
+app.get("/api/test", async (req, res) => {
+  res.json({ status: "alive", timestamp: new Date(), env_check: !!process.env.EMAIL_USER });
 });
 
-// ✅ Start server
+// ✅ Start server (Only for local testing, NOT used by Vercel)
 if (require.main === module) {
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
@@ -104,4 +107,3 @@ if (require.main === module) {
 }
 
 module.exports = app;
-
