@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Innovations & R&D Labs | JEKOKU HATS</title>
+    <meta name="description" content="Explore JEKOKU HATS R&D innovations: AI Smart Mirrors, Hospital Token Systems, Health Screening Gates, and AI Market Research Agents.">
+    <meta name="keywords" content="AI Smart Mirror, Hospital Queue Management, Health Screening Biometrics, AI Research Agent, JEKOKU HATS Innovations">
+
+    <!-- Fonts: Outfit, Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- GSAP & Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+    <!-- Star Cursor Canvas -->
+    <canvas id="cursor-canvas"></canvas>
+
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="loader-logo">JEKOKU HATS</div>
+        <div class="loader-progress-container">
+            <div class="loader-progress"></div>
+        </div>
+    </div>
+
+    <!-- Animated Gradient Background -->
+    <div class="mesh-bg">
+        <div class="mesh-blob blob-1"></div>
+        <div class="mesh-blob blob-2"></div>
+        <div class="mesh-blob blob-3"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-brand">JEKOKU HATS</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#services">Services</a>
+            <a href="innovations.html" class="active">Innovations</a>
+            <a href="projects.html">Projects</a>
+            <a href="index.html#team">Team</a>
+            <a href="index.html#contact" class="btn btn-outline nav-btn">Partner With Us</a>
+        </div>
+    </nav>
+
+    <main id="smooth-wrapper">
+        <div id="smooth-content">
+
+            <!-- Page Header -->
+            <section class="section hero" style="height: 60vh; min-height: 400px;">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1 class="hero-heading" style="opacity: 1;"><span class="text-gradient">Our Innovations</span></h1>
+                        <p class="hero-subheading" style="opacity: 1;">Architecting the next generation of intelligent solutions for the modern world.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Innovation Grid Section -->
+            <section id="innovations-page" class="section innovation-section">
+                <div class="container">
+                    <!-- Under Construction Banner -->
+                    <div class="under-construction-banner reveal-item">
+                        <div class="construction-icon">🛠️</div>
+                        <div class="construction-text">
+                            <h3>Innovations Under Calibration</h3>
+                            <p>Our R&D labs are currently fine-tuning these next-gen modules. Detailed documentation and live demos will be deployed in Phase 2. We'll update it later.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-2">
+                        <div class="innovation-card reveal-item">
+                            <div class="dev-badge">Under Development</div>
+                            <canvas class="innovation-particles"></canvas>
+                            <div class="innovation-content">
+                                <h3>Smart Mirror</h3>
+                                <p>An AI-powered health assistant integrated into a reflective interface, offering
+                                    real-time diagnostics and lifestyle telemetry seamlessly.</p>
+                                <div class="innovation-tech-tags">
+                                    <span>AI</span>
+                                    <span>Computer Vision</span>
+                                    <span>IoT</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="innovation-card reveal-item">
+                            <div class="dev-badge">Under Development</div>
+                            <canvas class="innovation-particles"></canvas>
+                            <div class="innovation-content">
+                                <h3>Hospital Token System</h3>
+                                <p>A centralized, highly efficient queue and token management architecture designed to
+                                    eliminate bottlenecks in modern healthcare facilities.</p>
+                                <div class="innovation-tech-tags">
+                                    <span>Queue Management</span>
+                                    <span>Enterprise Logic</span>
+                                    <span>Real-time</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="innovation-card reveal-item">
+                            <div class="dev-badge">Under Development</div>
+                            <canvas class="innovation-particles"></canvas>
+                            <div class="innovation-content">
+                                <h3>Health Screening Gate</h3>
+                                <p>A walk-through biometric and thermal analysis portal enabling rapid, non-invasive
+                                    triage for secure, high-traffic environments.</p>
+                                <div class="innovation-tech-tags">
+                                    <span>Biometrics</span>
+                                    <span>Thermal Sensing</span>
+                                    <span>Public Safety</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="innovation-card reveal-item">
+                            <div class="dev-badge">Under Development</div>
+                            <canvas class="innovation-particles"></canvas>
+                            <div class="innovation-content">
+                                <h3>Social Food Redistribution</h3>
+                                <p>A scalable logistics platform bridging the gap between surplus supply chains and
+                                    underserved communities via intelligent routing.</p>
+                                <div class="innovation-tech-tags">
+                                    <span>Logistics</span>
+                                    <span>Social Impact</span>
+                                    <span>Cloud Intelligence</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="innovation-card reveal-item">
+                            <div class="dev-badge">Under Development</div>
+                            <canvas class="innovation-particles"></canvas>
+                            <div class="innovation-content">
+                                <h3>PageFlow</h3>
+                                <p>An intelligent PDF ecosystem that enables seamless book imports, persistent
+                                    bookmarking, and multi-color highlighting with an integrated AI summarizer for instant
+                                    knowledge extraction.</p>
+                                <div class="innovation-tech-tags">
+                                    <span>PDF Ecosystem</span>
+                                    <span>AI Summarizer</span>
+                                    <span>Cloud Sync</span>
+                                </div>
+                                <a href="#" class="btn btn-outline innovation-btn" style="margin-top: 24px;">Explore Flow</a>
+                            </div>
+                        </div>
+
+                        <div class="innovation-card reveal-item">
+                            <div class="dev-badge">Under Development</div>
+                            <canvas class="innovation-particles"></canvas>
+                            <div class="innovation-content">
+                                <h3>InsightSphere Agent</h3>
+                                <p>A specialized market research agent that transforms startup concepts into detailed
+                                    analytical reports, offering competitive intel and strategic project roadmaps.</p>
+                                <div class="innovation-tech-tags">
+                                    <span>Market Research</span>
+                                    <span>LLM Analysis</span>
+                                    <span>Strategic Intelligence</span>
+                                </div>
+                                <a href="#" class="btn btn-outline innovation-btn" style="margin-top: 24px;">View Report Flow</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer section">
+                <div class="container">
+                    <div class="footer-top">
+                        <div class="footer-brand" style="font-size: 1.5rem;">JEKOKU HATS</div>
+                        <div class="footer-links">
+                            <a href="index.html#services">Services</a>
+                            <a href="index.html#about">About</a>
+                            <a href="innovations.html">Innovations</a>
+                            <a href="projects.html">Projects</a>
+                            <a href="index.html#contact">Contact Info</a>
+                            <a href="#">LinkedIn</a>
+                            <a href="https://x.com/JekokuHats" target="_blank" rel="noopener noreferrer">Twitter</a>
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jekokuhats@gmail.com" target="_blank" rel="noopener noreferrer">Gmail</a>
+                            <a href="https://www.instagram.com/jekoku_hats?igsh=MXU4dThoazIxbDVpcw==" target="_blank" rel="noopener noreferrer">Instagram</a>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy; 2026 JEKOKU HATS. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

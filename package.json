@@ -1,0 +1,24 @@
+{
+    "name": "jekoku-hats",
+    "version": "1.0.0",
+    "description": "JEKOKU HATS Website",
+    "main": "main.js",
+    "scripts": {
+        "start": "node server.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "vite"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "vite": "^7.3.1"
+    },
+    "dependencies": {
+        "cors": "^2.8.6",
+        "dotenv": "^17.4.1",
+        "express": "^5.2.1",
+        "nodemailer": "^8.0.5",
+        "otp-generator": "^4.0.1"
+    }
+}

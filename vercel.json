@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/register",
+      "destination": "/server.js"
+    },
+    {
+      "source": "/admin/(.*)",
+      "destination": "/server.js"
+    }
+  ]
+}
