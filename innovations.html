@@ -23,22 +23,41 @@
 </head>
 
 <body>
-    <!-- Star Cursor Canvas -->
-    <canvas id="cursor-canvas"></canvas>
-
     <!-- Loading Screen -->
     <div id="loader">
-        <div class="loader-logo">JEKOKU HATS</div>
-        <div class="loader-progress-container">
-            <div class="loader-progress"></div>
+        <div class="loader-content">
+            <div class="loader-spinner-container">
+                <div class="loader-ring ring-outer"></div>
+                <div class="loader-ring ring-inner"></div>
+                <svg class="loader-icon" viewBox="0 0 100 100">
+                    <path d="M20 70 L50 30 L80 70 Z" fill="none" stroke="url(#mintGradient)" stroke-width="3" stroke-linejoin="round"/>
+                    <path d="M35 70 L50 50 L65 70 Z" fill="none" stroke="url(#skyGradient)" stroke-width="2" stroke-linejoin="round"/>
+                    <defs>
+                        <linearGradient id="mintGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#0ea5e9" />
+                            <stop offset="100%" stop-color="#10b981" />
+                        </linearGradient>
+                        <linearGradient id="skyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#10b981" />
+                            <stop offset="100%" stop-color="#bae6fd" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="loader-text">JEKOKU HATS</div>
+            <div class="loader-counter">00%</div>
         </div>
     </div>
 
-    <!-- Animated Gradient Background -->
-    <div class="mesh-bg">
-        <div class="mesh-blob blob-1"></div>
-        <div class="mesh-blob blob-2"></div>
-        <div class="mesh-blob blob-3"></div>
+    <!-- 3D Floating Glass & Wine Orbs Background -->
+    <div class="orbs-bg">
+        <div class="orb orb-solid-1" data-depth="0.15" style="top: 10%; left: 15%;"></div>
+        <div class="orb orb-solid-2" data-depth="0.3" style="bottom: 15%; right: 10%;"></div>
+        <div class="orb orb-solid-3" data-depth="0.45" style="top: 60%; left: 5%;"></div>
+        <div class="orb orb-glass-1" data-depth="0.25" style="top: 25%; right: 20%;"></div>
+        <div class="orb orb-glass-2" data-depth="0.35" style="bottom: 30%; left: 25%;"></div>
+        <div class="orb orb-ring-1" data-depth="0.1" style="top: 45%; left: 55%;"></div>
+        <div class="orb orb-ring-2" data-depth="0.5" style="top: 80%; right: 30%;"></div>
         <div class="noise-overlay"></div>
     </div>
 
@@ -62,6 +81,7 @@
             <section class="section hero" style="height: 60vh; min-height: 400px;">
                 <div class="container">
                     <div class="hero-content">
+                        <div class="eyebrow">Research & innovation</div>
                         <h1 class="hero-heading" style="opacity: 1;"><span class="text-gradient">Our Innovations</span></h1>
                         <p class="hero-subheading" style="opacity: 1;">Architecting the next generation of intelligent solutions for the modern world.</p>
                     </div>

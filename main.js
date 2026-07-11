@@ -13,41 +13,66 @@ document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollTrigger);
 
     initLoader();
-    initCursor();
+    // initCursor();
     initScrollReveals();
     initInnovationParticles();
     initParallax();
+    initOrbsAnimation();
+    initOrbsParallax();
 
 });
 
 function initLoader() {
     const tl = gsap.timeline();
 
-    // Fade logo in
-    tl.to(".loader-logo", {
+    // 1. Reset progress text and elements
+    gsap.set(".loader-text", { opacity: 0, y: 15 });
+    gsap.set(".loader-counter", { opacity: 0 });
+
+    // 2. Animate counter text and fade elements in
+    tl.to([".loader-text", ".loader-counter"], {
         opacity: 1,
         y: 0,
-        duration: 0.6,
+        duration: 0.5,
+        stagger: 0.1,
         ease: EASE
     })
-
-        // Simulate loading bar progress
-        .to(".loader-progress", {
-            width: "100%",
-            duration: 1.2,
-            ease: "power2.inOut"
-        })
-
-        // Fade out loader
-        .to("#loader", {
-            opacity: 0,
-            duration: 0.6,
-            ease: EASE,
-            onComplete: () => {
-                document.getElementById("loader").style.display = "none";
-                playHeroAnimation();
+    
+    // 3. Count up 00 to 100
+    .to({ val: 0 }, {
+        val: 100,
+        duration: 1.4,
+        ease: "power1.inOut",
+        onUpdate: function() {
+            const counter = document.querySelector(".loader-counter");
+            if (counter) {
+                const formatted = Math.floor(this.targets()[0].val).toString().padStart(2, '0');
+                counter.innerText = formatted + "%";
             }
-        });
+        }
+    })
+
+    // 4. Stagger letters or fade text slightly up, scale down loader content
+    .to(".loader-content", {
+        scale: 0.9,
+        opacity: 0,
+        duration: 0.4,
+        ease: "power2.in"
+    })
+
+    // 5. Fade out and slide up loader background
+    .to("#loader", {
+        yPercent: -100,
+        duration: 0.8,
+        ease: "power3.inOut",
+        onComplete: () => {
+            const loaderEl = document.getElementById("loader");
+            if (loaderEl) {
+                loaderEl.style.display = "none";
+            }
+            playHeroAnimation();
+        }
+    }, "-=0.2");
 }
 
 function playHeroAnimation() {
@@ -149,9 +174,6 @@ function initCursor() {
     const ctx = canvas.getContext('2d');
 
     let w, h;
-    let particles = [];
-    const maxParticles = 800;
-
     const mouse = { x: 0, y: 0, active: false };
 
     function resize() {
@@ -166,72 +188,21 @@ function initCursor() {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
         mouse.active = true;
-
-        // Create star on move
-        if (particles.length < maxParticles) {
-            createParticle();
-        }
     });
-
-    function createParticle() {
-        particles.push({
-            x: mouse.x + (Math.random() - 0.5) * 10,
-            y: mouse.y + (Math.random() - 0.5) * 10,
-            vx: (Math.random() - 0.5) * 1.5,
-            vy: (Math.random() - 0.5) * 1.5 - 0.8, // Gentle upward drift for longer life
-            size: Math.random() * 3 + 1,
-            life: 1,
-            decay: 1 / (60 * 5), // Remian for 5 seconds
-            rotation: Math.random() * Math.PI * 2,
-            rotationVel: (Math.random() - 0.5) * 0.3,
-            spikes: Math.random() > 0.5 ? 4 : 5,
-            color: Math.random() > 0.7 ? '#3b82f6' : '#ffffff'
-        });
-    }
-
-    function drawStar(ctx, x, y, spikes, inner, outer, rotation, color, opacity) {
-        ctx.save();
-        ctx.beginPath();
-        ctx.translate(x, y);
-        ctx.rotate(rotation);
-        ctx.moveTo(0, 0 - outer);
-        for (let i = 0; i < spikes; i++) {
-            ctx.rotate(Math.PI / spikes);
-            ctx.lineTo(0, 0 - inner);
-            ctx.rotate(Math.PI / spikes);
-            ctx.lineTo(0, 0 - outer);
-        }
-        ctx.closePath();
-        ctx.fillStyle = color;
-        ctx.globalAlpha = opacity;
-        ctx.fill();
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = color;
-        ctx.fill();
-        ctx.restore();
-    }
 
     function animate() {
         ctx.clearRect(0, 0, w, h);
-        for (let i = particles.length - 1; i >= 0; i--) {
-            const p = particles[i];
-            p.x += p.vx;
-            p.y += p.vy;
-            p.life -= p.decay;
-            p.rotation += p.rotationVel;
-            if (p.life <= 0) {
-                particles.splice(i, 1);
-                continue;
-            }
-            const size = p.size * p.life;
-            drawStar(ctx, p.x, p.y, p.spikes, size * 0.35, size, p.rotation, p.color, p.life);
-        }
+
         if (mouse.active) {
             ctx.beginPath();
-            ctx.arc(mouse.x, mouse.y, 2, 0, Math.PI * 2);
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+            ctx.arc(mouse.x, mouse.y, 4, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.shadowBlur = 14;
+            ctx.shadowColor = 'rgba(164, 41, 77, 0.35)';
             ctx.fill();
+            ctx.shadowBlur = 0;
         }
+
         requestAnimationFrame(animate);
     }
     animate();
@@ -240,8 +211,8 @@ function initCursor() {
 function initParallax() {
     // Parallax Effect (Subtle)
     // Hero background moves slower than content
-    gsap.to(".mesh-bg", {
-        y: "20%",
+    gsap.to(".orbs-bg", {
+        y: "15%",
         ease: "none",
         scrollTrigger: {
             trigger: "body",
@@ -249,6 +220,44 @@ function initParallax() {
             end: "bottom top",
             scrub: true
         }
+    });
+}
+
+function initOrbsAnimation() {
+    const orbs = gsap.utils.toArray('.orb');
+    orbs.forEach((orb, i) => {
+        gsap.to(orb, {
+            x: "random(-50, 50)",
+            y: "random(-50, 50)",
+            rotation: "random(-90, 90)",
+            duration: "random(12, 22)",
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: i * 0.4
+        });
+    });
+}
+
+function initOrbsParallax() {
+    const orbs = gsap.utils.toArray('.orb');
+    window.addEventListener('mousemove', (e) => {
+        const mouseX = (e.clientX / window.innerWidth) - 0.5;
+        const mouseY = (e.clientY / window.innerHeight) - 0.5;
+        
+        orbs.forEach(orb => {
+            const depth = parseFloat(orb.getAttribute('data-depth')) || 0.2;
+            const moveX = mouseX * depth * 80;
+            const moveY = mouseY * depth * 80;
+            
+            gsap.to(orb, {
+                xPercent: moveX,
+                yPercent: moveY,
+                duration: 1.2,
+                ease: "power1.out",
+                overwrite: "auto"
+            });
+        });
     });
 }
 function initInnovationParticles() {
