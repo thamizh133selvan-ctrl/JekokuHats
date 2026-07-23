@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/register",
+      "destination": "/api/register"
+    },
+    {
+      "source": "/admin/(.*)",
+      "destination": "/api/register"
+    }
+  ]
+}
+
+
